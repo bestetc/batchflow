@@ -195,7 +195,7 @@ def show_research(df, layouts=None, titles=None, average_repetitions=False, log_
         name, attr = layout.split('/')
         ndf = df[df['name'] == name]
         for (clabel, cdf), curr_color in zip(ndf.groupby("config"), chosen_colors):
-            cdf = cdf.drop(['config', 'name'], axis=1).dropna(axis=1).astype('float')
+            cdf = cdf.drop(['config', 'name'], axis=1).dropna(how='all', axis=1).astype('float')
             if average_repetitions:
                 idf = cdf.groupby('iteration').mean().drop('repetition', axis=1)
                 y_values = idf[attr].rolling(roll_w).mean().values
