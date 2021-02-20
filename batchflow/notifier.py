@@ -3,8 +3,14 @@ import math
 from time import time, gmtime, strftime
 
 from tqdm import tqdm
-from tqdm.notebook import tqdm as tqdm_notebook
-from tqdm.auto import tqdm as tqdm_auto
+try:
+    from tqdm.notebook import tqdm as tqdm_notebook
+except ImportError:
+    tqdm_notebook = tqdm
+try:
+    from tqdm.auto import tqdm as tqdm_auto
+except ImportError:
+    tqdm_auto = tqdm
 
 import numpy as np
 import matplotlib.pyplot as plt
